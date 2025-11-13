@@ -29,19 +29,19 @@ app.use('/api/messages', messageRoutes);
 
 // 소켓 통신
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  console.log('Client connected');
 
   socket.on('send_message', (data) => {
     io.emit('receive_message', data);
   });
 
   socket.on('disconnect', () => {
-    console.log('A user disconnected');
+    console.log('Client disconnected');
   });
 });
 
 // 서버 실행
-const PORT = process.env.PORT || 5000;   // ✔ 클라우드 배포용 수정 완료
+const PORT = process.env.PORT || 5000;   // ★ 배포 필수 코드
 server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
